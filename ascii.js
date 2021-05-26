@@ -1,6 +1,6 @@
 'use strict';
 
-let animation = "";
+let animation = BLANK;
 let frames = [];
 let currentFrameIndex = 0;
 let interval = null;
@@ -29,7 +29,7 @@ animationTypeSelect.onchange = function (e) {
 
 function startAnimation() {
   const length = frames.length;
-  const notEnd = currentFrameIndex < length;
+  const notEnd = currentFrameIndex < length;  
   const frame = frames[notEnd ? currentFrameIndex++ : 0];
   textArea.innerHTML = frame;
 
@@ -38,7 +38,7 @@ function startAnimation() {
   }
 }
 
-startButton.onclick = function () {
+startButton.onclick = function () {    
   if (animation) {
     stopButton.disabled = false;
     startButton.disabled = true;
@@ -49,7 +49,7 @@ startButton.onclick = function () {
   }
 };
 
-stopButton.onclick = function () {
+stopButton.onclick = function() {
   clearInterval(interval);
   textArea.innerHTML = frames.join("");
   stopButton.disabled = true;
