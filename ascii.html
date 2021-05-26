@@ -8,7 +8,6 @@
 
 <body>
     <div id="heading">CSE 190 M ASCII Animation Viewer</div>
-
     <textarea name="container" id="container" cols="80" rows="20"></textarea>
     <div id="fields">
         <fieldset>
@@ -29,14 +28,19 @@
         </fieldset>
         <fieldset>
             <legend>Size</legend>
-            <select name="" id="">
-                <option value="">Medium</option>
+            <select name="font" id="font">
+                <option value="7pt">Tiny</option>
+                <option value="10pt">Small</option>
+                <option value="12pt" selected>Medium</option> 
+                <option value="16pt">Large</option>               
+                <option value="24pt">Extra Large</option>
+                <option value="32pt">XXL</option>                
             </select>
         </fieldset>
         <fieldset>
             <legend>Speed</legend>
-            <input type="checkbox" name="speed">
-            <label for="speed">Turbo</label>
+            <input type="checkbox" name="turbo" id="turbo">
+            <label for="turbo">Turbo</label>
         </fieldset>
     </div>
     <div id="footer">

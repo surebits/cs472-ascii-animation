@@ -1,15 +1,24 @@
+'use strict';
+
 let animation = "BLANK";
 let frames = [];
 let currentFrameIndex = 0;
-
 let interval = null;
+let speed = 250;
 
-const [animationTypeSelect] = document.getElementsByTagName("select");
+const [animationTypeSelect, fontSizeSelect] = document.getElementsByTagName("select");
 const [startButton, stopButton] = document.getElementsByTagName("button");
 const textArea = document.getElementById("container");
+const checkBox = document.getElementById("turbo");
 
-textArea.onchange = function(e) {
-    
+stopButton.disabled = true;
+
+turbo.onchange= function(e) {
+    speed = e.target.checked ? 50 : 250;
+}
+
+fontSizeSelect.onchange = function(e) {
+    textArea.style.fontSize = e.target.value;
 }
 
 animationTypeSelect.onchange = function (e) {
@@ -21,7 +30,6 @@ animationTypeSelect.onchange = function (e) {
 function startAnimation() {
   const length = frames.length;
   const notEnd = currentFrameIndex < length;
-
   const frame = frames[notEnd ? currentFrameIndex++ : 0];
   textArea.innerHTML = frame;
 
@@ -32,12 +40,19 @@ function startAnimation() {
 
 startButton.onclick = function () {
   if (animation != "BLANK") {
+    stopButton.disabled = false;
+    startButton.disabled = true;
+    animationTypeSelect.disabled = true;
+    
     clearInterval(interval);
-    interval = setInterval(startAnimation, 250);
+    interval = setInterval(startAnimation, speed);    
   }
 };
 
 stopButton.onclick = function () {
   clearInterval(interval);
-  textArea.innerHTML = animation;
+  textArea.innerHTML = frames.join("");
+  stopButton.disabled = true;
+  startButton.disabled = false;
+  animationTypeSelect.disabled = false;
 };
