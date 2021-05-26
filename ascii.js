@@ -1,6 +1,6 @@
 'use strict';
 
-let animation = "BLANK";
+let animation = "";
 let frames = [];
 let currentFrameIndex = 0;
 let interval = null;
@@ -39,11 +39,11 @@ function startAnimation() {
 }
 
 startButton.onclick = function () {
-  if (animation != "BLANK") {
+  if (animation) {
     stopButton.disabled = false;
     startButton.disabled = true;
     animationTypeSelect.disabled = true;
-    
+
     clearInterval(interval);
     interval = setInterval(startAnimation, speed);    
   }
